@@ -19,6 +19,7 @@ class SignUpProvider extends BaseViewModal {
   final _authServices = locator<AuthServices>();
   final locateUser = locator<AuthServices>();
   CustomAuthResult customAuthResult = CustomAuthResult();
+  final formKey = GlobalKey<FormState>();
   AppUser appUser = AppUser();
   bool isVisiblePassword = true;
 
@@ -38,6 +39,8 @@ class SignUpProvider extends BaseViewModal {
     notifyListeners();
     print("Password final state : $isVisiblePassword");
   }
+
+
 
   ///
   /// Sign Up user  =======================================>>>
@@ -65,30 +68,36 @@ class SignUpProvider extends BaseViewModal {
     }
 
 
+  ///
+  ///  upload Image To Storage =======================================>>>
+  ///
+
   uploadImageToStorage(BuildContext context) async {
-    setState(ViewState.busy);
+    if (formKey.currentState!.validate()) {
+      setState(ViewState.busy);
 
-    if (userImage != null) {
-      appUser.profileImage = await databaseStorageServices.uploadUserImage(
-          userImage!, locateUser.appUser.appUserId.toString());
-    }
+      if (userImage != null) {
+        appUser.profileImage = await databaseStorageServices.uploadUserImage(
+            userImage!, locateUser.appUser.appUserId.toString());
+      }
 
-    await signUpUser(appUser, context);
+      await signUpUser(appUser, context);
 
-    setState(ViewState.idle);
-  }
-
-  ///
-  ///  Image Packer =============================================>>>
-  ///
-
-  pickImageFromGallery() async {
-    image = await imagePicker.pickImage(source: ImageSource.gallery);
-    if (image != null) {
-      userImage = File(image!.path);
-      print("UserImagePath=>${userImage!.path}");
-      notifyListeners();
+      setState(ViewState.idle);
     }
   }
+
+    ///
+    ///  Image Packer =============================================>>>
+    ///
+
+    pickImageFromGallery() async {
+      image = await imagePicker.pickImage(source: ImageSource.gallery);
+      if (image != null) {
+        userImage = File(image!.path);
+        print("UserImagePath=>${userImage!.path}");
+        notifyListeners();
+      }
+    }
 
 }

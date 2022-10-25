@@ -19,12 +19,25 @@ class SignInProvider extends BaseViewModal {
   CustomAuthResult customAuthResult = CustomAuthResult();
   final emailController = TextEditingController();
   final passwordController = TextEditingController();
+  final formKey = GlobalKey<FormState>();
+  bool isVisiblePassword = true;
 
+
+  ///
+  /// Visible Password =================================>>>
+  ///
+  visiblePassword() {
+    print("Password state : $isVisiblePassword");
+    isVisiblePassword = !isVisiblePassword;
+    notifyListeners();
+    print("Password final state : $isVisiblePassword");
+  }
 
   ///
   /// Login user ============================================>>>
   ///
   loginToApp(AppUser appUser, BuildContext context) async {
+    if (formKey.currentState!.validate()) {
 
       print("App user email: ${appUser.userEmail}");
       print("App user Password: ${appUser.password}");
@@ -50,4 +63,5 @@ class SignInProvider extends BaseViewModal {
         );
       }
     }
+  }
   }

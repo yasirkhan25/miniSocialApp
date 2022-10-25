@@ -29,11 +29,11 @@ class EditProfileScreen extends StatelessWidget {
 
         ),
         body:  ModalProgressHUD(
-        progressIndicator: CircularProgressIndicator(
-        color: primaryColor,
-      ),
-      inAsyncCall: model.state == ViewState.busy,
-      child: SingleChildScrollView(
+          progressIndicator: CircularProgressIndicator(
+          color: primaryColor,
+        ),
+          inAsyncCall: model.state == ViewState.busy,
+          child: SingleChildScrollView(
           child: Padding(
             padding: EdgeInsets.symmetric(horizontal: 15.0, vertical: 20),
             child: Column(
@@ -58,7 +58,7 @@ class EditProfileScreen extends StatelessWidget {
                             .appUser
                             .profileImage!)
                             : AssetImage(
-                            'assets/images/babykids1.jpg')
+                            'assets/images/babykids18.jpg')
                         as ImageProvider,
                       ),
                     ),
@@ -94,7 +94,8 @@ class EditProfileScreen extends StatelessWidget {
                 SizedBox(
                   height: 10,
                 ),
-                Center(child: Text("${locateUser.appUser.userName.toString()}",style: TextStyle(fontWeight: FontWeight.w500,fontSize: 18,color: Colors.white),)),
+                Center(child: Text("${locateUser.appUser.userName.toString()}",
+                  style: TextStyle(fontWeight: FontWeight.w500,fontSize: 18,color: Colors.white),)),
                 SizedBox(
                   height: 30,
                 ),
@@ -139,9 +140,11 @@ class EditProfileScreen extends StatelessWidget {
                         keyBoardType: TextInputType.name,
                         sufFixIcon: Icon(Icons.edit,size: 20,),
                         onChanged: (value) {
-                          model.appUser.userName = value;
-                          print(value);
+                          if (value.isNotEmpty) {
+                            model.appUser.userName = value;
+                          }
                         },
+                        controller: model.nameController,
                       ),
 
                       Divider(thickness: 1.5),
@@ -153,13 +156,17 @@ class EditProfileScreen extends StatelessWidget {
                       ///
                       /// User Address ============>>>
                       ///
-                      CustomTextField(hintText: "Enter Address",
+                      CustomTextField(
+                        hintText: "Enter Address",
                         textInputAction: TextInputAction.next,
                         keyBoardType: TextInputType.streetAddress,
                         sufFixIcon: Icon(Icons.edit,size: 20,),
                         onChanged: (value) {
-                          model.appUser.address = value;
+                          if (value.isNotEmpty) {
+                            model.appUser.address = value;
+                          }
                         },
+                        controller: model.addressController,
                       ),
                       Divider(thickness: 1.5),
                       SizedBox(
@@ -175,8 +182,11 @@ class EditProfileScreen extends StatelessWidget {
                         keyBoardType: TextInputType.phone,
                         sufFixIcon: Icon(Icons.edit,size: 20,),
                         onChanged: (value) {
-                          model.appUser.phoneNumber = value;
+                          if (value.isNotEmpty) {
+                            model.appUser.phoneNumber = value;
+                          }
                         },
+                        controller: model.phoneNoController,
                       ),
 
                       SizedBox(

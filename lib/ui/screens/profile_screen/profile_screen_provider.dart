@@ -27,9 +27,26 @@ class ProfileScreenProvider extends BaseViewModal {
   File? userImage;
   String? imageUrl;
 
+  String? editName;
+  String? editAddress;
+  String? editPhoneNo;
+
+  TextEditingController nameController = TextEditingController();
+  TextEditingController addressController = TextEditingController();
+  TextEditingController phoneNoController = TextEditingController();
+
   final ImagePicker imagePicker = ImagePicker();
   DatabaseStorageServices databaseStorageServices = DatabaseStorageServices();
 
+
+  ProfileScreenProvider() {
+    appUser = locateUser.appUser;
+
+    nameController = TextEditingController(text: locateUser.appUser.userName);
+    addressController = TextEditingController(text: locateUser.appUser.address);
+    phoneNoController = TextEditingController(text: locateUser.appUser.phoneNumber);
+
+  }
 
   ///
   ///  Update User Detail =========================================>>>
@@ -39,7 +56,7 @@ class ProfileScreenProvider extends BaseViewModal {
     await databaseServices.updateUserProfile(appUser);
     print("profile updated successfully");
 
-    Get.off(() => ProfileScreen());
+    Get.back();
   }
 
 

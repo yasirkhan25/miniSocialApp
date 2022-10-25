@@ -36,7 +36,7 @@ class _SplashScreenState extends State<SplashScreen> {
               child: ClipRRect(
                   borderRadius: BorderRadius.circular(50),
                   child: Image.asset(
-                    "assets/images/babykids10.jpg",
+                    "assets/images/dp13.jpg",
                     fit: BoxFit.fill,
                   )),
             ),
@@ -44,10 +44,10 @@ class _SplashScreenState extends State<SplashScreen> {
               height: 5,
             ),
             Text(
-              "Kid Dps",
+              "KidDps",
               style: TextStyle(
                   color: Colors.white,
-                  fontSize: 20,
+                  fontSize: 22,
                   fontWeight: FontWeight.w500),
             ),
           ],

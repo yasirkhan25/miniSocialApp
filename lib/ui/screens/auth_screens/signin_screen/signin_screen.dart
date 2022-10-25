@@ -28,7 +28,7 @@ class _SignInScreenState extends State<SignInScreen> {
           backgroundColor: primaryColor,
 
           ///
-          ///   Body ==============>>>
+          ///   Body ===================>>>
           ///
           body:  ModalProgressHUD(
             progressIndicator: CircularProgressIndicator(
@@ -65,7 +65,8 @@ class _SignInScreenState extends State<SignInScreen> {
                     ),
                   ),
 
-                  ///  Container ===============>>>
+                  ///  Container ==========================>>>
+                  ///
                   Padding(
                     padding: EdgeInsets.symmetric(horizontal: 15),
                     child: Container(
@@ -90,81 +91,119 @@ class _SignInScreenState extends State<SignInScreen> {
                       child: Padding(
                         padding:
                             EdgeInsets.symmetric(vertical: 20, horizontal: 30),
-                        child: Column(
-                          children: [
-                            SizedBox(
-                              height: 12,
-                            ),
+                        child: Form(
+                          key: model.formKey,
+                          autovalidateMode: AutovalidateMode.onUserInteraction,
+                          child: Column(
+                            children: [
+                              SizedBox(
+                                height: 12,
+                              ),
 
-                            /// Email TextField ===============>>>
-                            CustomTextField(
-                              hintText: 'Email',
-                              textInputAction: TextInputAction.next,
-                              keyBoardType: TextInputType.emailAddress,
-                              onChanged: (value) {
-                                model.appUser.userEmail = value;
-                              },
-                            ),
-                            SizedBox(
-                              height: 12,
-                            ),
+                              /// Email TextField =================>>>
+                              ///
+                              CustomTextField(
+                                hintText: 'Email',
+                                textInputAction: TextInputAction.next,
+                                keyBoardType: TextInputType.emailAddress,
+                                onChanged: (value) {
+                                  model.appUser.userEmail = value;
+                                },
+                                validator: (value) {
+                                  if (value == null || value.isEmpty) {
+                                    return "Please enter your email";
+                                  }
+                                  if (!value.contains("@")) {
+                                    return "Enter valid email";
+                                  }
+                                },
+                              ),
+                              SizedBox(
+                                height: 12,
+                              ),
 
-                            /// Password TextField ===============>>>
-                            CustomTextField(
-                              hintText: 'Password',
-                              sufFixIcon: Icon(Icons.visibility_off),
-                              textInputAction: TextInputAction.next,
-                              keyBoardType: TextInputType.visiblePassword,
-                              obscureText: true,
-                              onChanged: (value) {
-                                model.appUser.password = value;
-                              },
-                            ),
-                            SizedBox(
-                              height: 12,
-                            ),
-                            SizedBox(
-                              height: 20,
-                            ),
+                              /// Password TextField ================>>>
+                              ///
+                              CustomTextField(
+                                hintText: 'Password',
+                                textInputAction: TextInputAction.next,
+                                keyBoardType: TextInputType.visiblePassword,
+                                obscureText: model.isVisiblePassword,
+                                suffixIcon: IconButton(
+                                  onPressed: () {
+                                    model.visiblePassword();
+                                  },
+                                  icon: model.isVisiblePassword
+                                      ? Icon(
+                                    Icons.visibility_off,
+                                    color: Color(0xFF568C48),
+                                  )
+                                      : Icon(
+                                    Icons.visibility,
+                                    color: Color(0xFF568C48),
+                                  ),
+                                ),
+                                onChanged: (value) {
+                                  model.appUser.password = value;
+                                },
+                                validator: (value) {
+                                  if (value == null || value.isEmpty) {
+                                    return "Please enter your Password";
+                                  }
+                                  if (value.length < 6) {
+                                    return "Password length must be 6 characters";
+                                  }else{
+                                    return "Incorrect Password";
+                                  }
+                                },
+                              ),
+                              SizedBox(
+                                height: 12,
+                              ),
+                              SizedBox(
+                                height: 20,
+                              ),
 
-                            ///
-                            ///  Sign In Button ===============>>>
-                            ///
-                            InkWell(
-                              onTap: () {
-                                model.loginToApp(model.appUser, context);
-                              },
-                              child: CustomButton(text: 'SIGN IN'),
-                            ),
+                              ///
+                              ///  Sign In Button ===============>>>
+                              ///
+                              InkWell(
+                                onTap: () {
+                                  model.loginToApp(model.appUser, context);
+                                },
+                                child: CustomButton(text: 'SIGN IN'),
+                              ),
 
-                            ///
-                            ///  Sign Up Button ===============>>>
-                            ///
-                            InkWell(
-                              onTap: () {
-                                Get.off(() => SignUpScreen());
-                              },
-                              child: ListTile(
-                                contentPadding: EdgeInsets.zero,
-                                title: Center(
-                                  child: RichText(
-                                    text: TextSpan(
-                                      text: 'Create an account?',
-                                      style: TextStyle(
-                                          color: Colors.grey, fontSize: 15),
-                                      children: <TextSpan>[
-                                        TextSpan(
-                                          text: ' Sign Up',
-                                          style: TextStyle(
-                                              color: primaryColor, fontSize: 16),
-                                        ),
-                                      ],
+                              ///
+                              ///  Sign Up Button ===============>>>
+                              ///
+                              ///
+                              InkWell(
+                                onTap: () {
+                                  Get.off(() => SignUpScreen());
+                                },
+                                child: ListTile(
+                                  contentPadding: EdgeInsets.zero,
+                                  title: Center(
+                                    child: RichText(
+                                      text: TextSpan(
+                                        text: 'Create an account?',
+                                        style: TextStyle(
+                                            color: Colors.grey, fontSize: 15),
+                                        children: <TextSpan>[
+                                          TextSpan(
+                                            text: ' Sign Up',
+                                            style: TextStyle(
+                                                color: primaryColor, fontSize: 16),
+                                          ),
+                                        ],
+                                      ),
                                     ),
                                   ),
                                 ),
-                              ),
-                            )
-                          ],
+                              )
+                            ],
+                          ),
                         ),
                       ),
                     ),

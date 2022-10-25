@@ -1,6 +1,8 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
+import '../../core/contstant/color.dart';
+
 class CustomTextField extends StatelessWidget {
   final onChanged;
   final validator;
@@ -35,32 +37,36 @@ class CustomTextField extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      height: 50,
       decoration: BoxDecoration(
         color: Color(0xFFF8F8F8),
         borderRadius: BorderRadius.circular(10),
       ),
-      padding: EdgeInsets.fromLTRB(10, 0, 10, 0),
-      child: Center(
-        child: TextFormField(
-          textInputAction: TextInputAction.next,
-          onChanged: onChanged,
-          validator: validator,
-          controller: controller,
-          obscureText: obscureText,
-          style: TextStyle(fontSize: 16),
-          onFieldSubmitted: onFieldSubmitted,
-          focusNode: focusNode,
-          obscuringCharacter: "*",
-          decoration: InputDecoration(
-            border: InputBorder.none,
-            hintText: hintText,
-            hintStyle: TextStyle(
-              fontSize: 15.0,
-              color: Colors.black,
-            ),
-            prefix: preFixIcon,
-            suffixIcon: sufFixIcon,
+      child: TextFormField(
+        textInputAction: TextInputAction.next,
+        onChanged: onChanged,
+        validator: validator,
+        controller: controller,
+        obscureText: obscureText,
+        style: TextStyle(fontSize: 16),
+        onFieldSubmitted: onFieldSubmitted,
+        focusNode: focusNode,
+        obscuringCharacter: "*",
+        cursorColor: primaryColor,
+        decoration: InputDecoration(
+          // border: InputBorder.none,
+          filled: true,
+          hintText: hintText,
+          contentPadding: EdgeInsets.symmetric(horizontal: 10, vertical: 10),
+          hintStyle: TextStyle(
+            fontSize: 15.0,
+            color: Colors.black,
+          ),
+          prefix: preFixIcon,
+          suffixIcon: sufFixIcon,
+
+          border: OutlineInputBorder(
+            borderRadius: BorderRadius.circular(7),
+            borderSide: BorderSide.none,
           ),
         ),
       ),

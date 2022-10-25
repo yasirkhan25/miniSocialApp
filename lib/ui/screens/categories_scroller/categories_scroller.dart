@@ -22,7 +22,7 @@ class CategoriesScroller extends StatelessWidget {
                 height: categoryHeight,
                 child: ClipRRect(
                     borderRadius: BorderRadius.circular(10),
-                    child: Image.asset("assets/images/babykids17.jpg",fit: BoxFit.cover,)),
+                    child: Image.asset("assets/images/dp13.jpg",fit: BoxFit.cover,)),
               ),
 
               Container(
@@ -31,7 +31,7 @@ class CategoriesScroller extends StatelessWidget {
                 height: categoryHeight,
                 child: ClipRRect(
                     borderRadius: BorderRadius.circular(10),
-                    child: Image.asset("assets/images/babykids14.jpg",fit: BoxFit.cover,)),
+                    child: Image.asset("assets/images/dp4.jpg",fit: BoxFit.cover,)),
               ),
 
               Container(
@@ -40,7 +40,7 @@ class CategoriesScroller extends StatelessWidget {
                 height: categoryHeight,
                 child: ClipRRect(
                     borderRadius: BorderRadius.circular(10),
-                    child: Image.asset("assets/images/babykids8.jpg",fit: BoxFit.cover,)),
+                    child: Image.asset("assets/images/dp20.jpg",fit: BoxFit.cover,)),
               ),
 
               Container(
@@ -58,7 +58,7 @@ class CategoriesScroller extends StatelessWidget {
                 height: categoryHeight,
                 child: ClipRRect(
                     borderRadius: BorderRadius.circular(10),
-                    child: Image.asset("assets/images/babykids16.jpg",fit: BoxFit.cover,)),
+                    child: Image.asset("assets/images/dp22.jpg",fit: BoxFit.cover,)),
               ),
             ],
           ),
