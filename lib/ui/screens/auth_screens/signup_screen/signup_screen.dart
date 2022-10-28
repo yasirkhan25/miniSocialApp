@@ -38,7 +38,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
             child:  SingleChildScrollView(
               child: Form(
                 key: model.formKey,
-                autovalidateMode: AutovalidateMode.onUserInteraction,
+                //autovalidateMode: AutovalidateMode.onUserInteraction,
                 child: GestureDetector(
                   onTap: (){
                     FocusScope.of(context).requestFocus(FocusNode());

@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:get/get_core/src/get_main.dart';
 import 'package:sk/ui/screens/auth_screens/signin_screen/signin_screen.dart';
 import '../../../../core/enums/view_state.dart';
 import '../../../../core/locator.dart';

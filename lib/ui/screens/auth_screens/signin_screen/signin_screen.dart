@@ -93,7 +93,7 @@ class _SignInScreenState extends State<SignInScreen> {
                             EdgeInsets.symmetric(vertical: 20, horizontal: 30),
                         child: Form(
                           key: model.formKey,
-                          autovalidateMode: AutovalidateMode.onUserInteraction,
+                          //autovalidateMode: AutovalidateMode.onUserInteraction,
                           child: Column(
                             children: [
                               SizedBox(
@@ -129,33 +129,24 @@ class _SignInScreenState extends State<SignInScreen> {
                                 textInputAction: TextInputAction.next,
                                 keyBoardType: TextInputType.visiblePassword,
                                 obscureText: model.isVisiblePassword,
-                                suffixIcon: IconButton(
-                                  onPressed: () {
-                                    model.visiblePassword();
-                                  },
-                                  icon: model.isVisiblePassword
-                                      ? Icon(
-                                    Icons.visibility_off,
-                                    color: Color(0xFF568C48),
-                                  )
-                                      : Icon(
-                                    Icons.visibility,
-                                    color: Color(0xFF568C48),
-                                  ),
-                                ),
+                                // suffixIcon: IconButton(
+                                //   onPressed: () {
+                                //     model.visiblePassword();
+                                //   },
+                                //   icon: model.isVisiblePassword
+                                //       ? Icon(
+                                //     Icons.visibility_off,
+                                //     color: Color(0xFF568C48),
+                                //   )
+                                //       : Icon(
+                                //     Icons.visibility,
+                                //     color: Color(0xFF568C48),
+                                //   ),
+                                // ),
                                 onChanged: (value) {
                                   model.appUser.password = value;
                                 },
-                                validator: (value) {
-                                  if (value == null || value.isEmpty) {
-                                    return "Please enter your Password";
-                                  }
-                                  if (value.length < 6) {
-                                    return "Password length must be 6 characters";
-                                  }else{
-                                    return "Incorrect Password";
-                                  }
-                                },
+
                               ),
                               SizedBox(
                                 height: 12,

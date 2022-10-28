@@ -5,28 +5,36 @@ class DatabaseStorageServices {
 
   FirebaseStorage _storage = FirebaseStorage.instance;
 
-  Future<String?> uploadUserImage(File image, String uuid) async {
+
+  ///
+  ///  Upload User Profile Image Query ==========>>>
+  ///
+  Future<String?> uploadUserProfileImage(File image, String uuid) async {
     try {
       var reference = _storage.ref().child("UserProfilesImages/$uuid");
       var uploadImage = reference.putFile(image);
       TaskSnapshot snapshot =
-          await uploadImage.whenComplete(() => print('Image Uploaded'));
+          await uploadImage.whenComplete(() => print('Profile Image Uploaded'));
       final imageUrl = snapshot.ref.getDownloadURL();
       return imageUrl;
     } catch (e) {
-      print("Exception@uploadUserImage=> $e");
+      print("Exception@uploadUserProfileImage=> $e");
       return null;
     }
   }
 
-  Future<String?> uploadAppointmentImages(File image) async {
+
+  ///
+  ///  Upload User Timeline Images Query ==========>>>
+  ///
+  Future<String?> uploadUserImages(File image) async {
     try {
       var reference = _storage
           .ref()
-          .child("notesImages/${DateTime.now().microsecondsSinceEpoch}");
+          .child("userPostImages/${DateTime.now().microsecondsSinceEpoch}");
       var uploadImage = reference.putFile(image);
       TaskSnapshot snapshot =
-          await uploadImage.whenComplete(() => print('Image Uploaded'));
+          await uploadImage.whenComplete(() => print('Timeline Image Uploaded'));
       final imageUrl = snapshot.ref.getDownloadURL();
       return imageUrl;
     } catch (e) {

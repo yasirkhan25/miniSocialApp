@@ -1,6 +1,7 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import '../locator.dart';
 import '../models/app_user.dart';
+import '../models/post_image_model.dart';
 import 'auth_Services.dart';
 
 class DatabaseServices {
@@ -101,5 +102,75 @@ class DatabaseServices {
     }
   }
 
+
+  ///
+  ///  Set Post Image Data Collection ========>>>
+  ///
+  setPostImage(PostImage postImage, String UserId) async {
+    try {
+      var id = DateTime.now().microsecondsSinceEpoch.toString();
+      postImage.postImageId = id;
+
+      await firebaseFireStore
+          .collection('PostImage')
+          .doc(UserId)
+          .collection('AllPostImages')
+          .doc(id)
+          .set(postImage.toJson());
+      return true;
+    } catch (e) {
+      print("Exception@MakingPostImage=>$e");
+    }
+  }
+
+  ///
+  ///  Delete Post Image Data Collection ========>>>
+  ///
+  deletePostImage(String id, String UserId) async {
+    try {
+
+      await firebaseFireStore
+          .collection('PostImage')
+          .doc(UserId)
+          .collection('AllPostImages')
+          .doc(id)
+          .delete();
+      return true;
+    } catch (e) {
+      print("Exception@DeletePostImage=>$e");
+    }
+  }
+
+
+  ///
+  /// Get Post Image Data Collection ========>>>
+  ///
+  Stream<QuerySnapshot>? getPostImage() {
+    try {
+      Stream<QuerySnapshot> snapshots = FirebaseFirestore.instance
+          .collection('PostImage')
+          .doc(locator<AuthServices>().appUser.appUserId)
+          .collection('AllPostImages').orderBy('postImageDate',descending: true)
+          .snapshots();
+      return snapshots;
+    } catch (e) {
+      print('Exception @DatabaseService/GetPostImage$e');
+    }
+  }
+
+  //
+  // ///
+  // /// Get All Post Image Data Collection ========>>>
+  // ///
+  // Stream<QuerySnapshot>? getAllPostImages() {
+  //   try {
+  //     Stream<QuerySnapshot> snapshots = FirebaseFirestore.instance
+  //         .collectionGroup('AllPostImages')
+  //         .snapshots();
+  //     return snapshots;
+  //   } catch (e) {
+  //     print('Exception @DatabaseService/GetAllPostImages $e');
+  //   }
+  // }
 
 }

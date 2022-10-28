@@ -68,7 +68,7 @@ class ProfileScreenProvider extends BaseViewModal {
     appUser= locateUser.appUser;
 
     if (userImage != null) {
-      appUser.profileImage = await databaseStorageServices.uploadUserImage(
+      appUser.profileImage = await databaseStorageServices.uploadUserProfileImage(
           userImage!, locateUser.appUser.appUserId.toString());
     }
 

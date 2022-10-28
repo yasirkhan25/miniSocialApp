@@ -1,8 +1,6 @@
 import 'dart:io';
-
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:get/get_core/src/get_main.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:sk/ui/screens/home_screen/home_screen.dart';
 import '../../../../core/enums/view_state.dart';
@@ -13,7 +11,6 @@ import '../../../../core/services/auth_Services.dart';
 import '../../../../core/services/custom_auth_result.dart';
 import '../../../../core/services/database_storage_services.dart';
 import '../../../custom_widgets/custom_snacke_bar.dart';
-import '../signin_screen/signin_screen.dart';
 
 class SignUpProvider extends BaseViewModal {
   final _authServices = locator<AuthServices>();
@@ -77,7 +74,7 @@ class SignUpProvider extends BaseViewModal {
       setState(ViewState.busy);
 
       if (userImage != null) {
-        appUser.profileImage = await databaseStorageServices.uploadUserImage(
+        appUser.profileImage = await databaseStorageServices.uploadUserProfileImage(
             userImage!, locateUser.appUser.appUserId.toString());
       }
 

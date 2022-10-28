@@ -4,10 +4,11 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:get/get.dart';
 import 'package:sk/ui/screens/auth_screens/signin_screen/signin_screen.dart';
-import '../../core/contstant/color.dart';
-import '../../core/locator.dart';
-import '../../core/services/auth_Services.dart';
-import '../screens/profile_screen/profile_screen.dart';
+import '../../../core/contstant/color.dart';
+import '../../../core/locator.dart';
+import '../../../core/services/auth_Services.dart';
+import '../profile_screen/profile_screen.dart';
+import '../upload_image/upload_image.dart';
 
 class CustomDrawer extends StatelessWidget {
   final locateUser = locator<AuthServices>();
@@ -120,6 +121,29 @@ class CustomDrawer extends StatelessWidget {
                       ],
                     ),
                   ),
+                  SizedBox(height: 30),
+
+                  /// upload Image Button ============>>>
+                  ///
+                  InkWell(
+                    onTap: (){
+                      Get.to(() => UploadImageScreen());
+                    },
+                    child: Row(
+                      children: [
+                        Icon(Icons.add_a_photo_outlined, size: 20),
+                        SizedBox(width: 10),
+                        Text(
+                          'UPLOAD IMAGE',
+                          style: TextStyle(
+                            fontSize: 16,
+                          ),
+                        ),
+                        Expanded(child: SizedBox()),
+                        Icon(Icons.arrow_forward_ios_outlined, size: 20),
+                      ],
+                    ),
+                  ),
 
                   SizedBox(height: 30),
 
@@ -143,7 +167,8 @@ class CustomDrawer extends StatelessWidget {
                       Icon(Icons.arrow_forward_ios_outlined, size: 20),
                     ],
                   ),
-              )],
+                ),
+                ],
               ),
             )
           ],
