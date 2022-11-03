@@ -58,7 +58,7 @@ class EditProfileScreen extends StatelessWidget {
                             .appUser
                             .profileImage!)
                             : AssetImage(
-                            'assets/images/babykids18.jpg')
+                            'assets/images/dp20.jpg')
                         as ImageProvider,
                       ),
                     ),
@@ -138,7 +138,7 @@ class EditProfileScreen extends StatelessWidget {
                         hintText: "Enter Name",
                         textInputAction: TextInputAction.next,
                         keyBoardType: TextInputType.name,
-                        sufFixIcon: Icon(Icons.edit,size: 20,),
+                       // suffixIcon: IconButton(Icons.edit,size: 20,),
                         onChanged: (value) {
                           if (value.isNotEmpty) {
                             model.appUser.userName = value;
@@ -160,7 +160,7 @@ class EditProfileScreen extends StatelessWidget {
                         hintText: "Enter Address",
                         textInputAction: TextInputAction.next,
                         keyBoardType: TextInputType.streetAddress,
-                        sufFixIcon: Icon(Icons.edit,size: 20,),
+                       // sufFixIcon: Icon(Icons.edit,size: 20,),
                         onChanged: (value) {
                           if (value.isNotEmpty) {
                             model.appUser.address = value;
@@ -180,7 +180,7 @@ class EditProfileScreen extends StatelessWidget {
                         hintText: "Enter Phone Number",
                         textInputAction: TextInputAction.next,
                         keyBoardType: TextInputType.phone,
-                        sufFixIcon: Icon(Icons.edit,size: 20,),
+                        //sufFixIcon: Icon(Icons.edit,size: 20,),
                         onChanged: (value) {
                           if (value.isNotEmpty) {
                             model.appUser.phoneNumber = value;

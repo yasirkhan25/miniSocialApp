@@ -4,7 +4,6 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:sk/ui/screens/auth_screens/signin_screen/signin_screen.dart';
 import 'package:sk/ui/screens/home_screen/home_screen.dart';
-
 import 'core/contstant/color.dart';
 
 class SplashScreen extends StatefulWidget {

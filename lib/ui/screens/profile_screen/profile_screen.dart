@@ -40,7 +40,7 @@ class ProfileScreen extends StatelessWidget {
                   radius: 50,
                   backgroundImage: locateUser.appUser.profileImage != null
                       ? NetworkImage("${locateUser.appUser.profileImage}")
-                      : AssetImage('assets/images/babykids18.jpg')
+                      : AssetImage('assets/images/dp20.jpg')
                   as ImageProvider,
                 ),
               ),

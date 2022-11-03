@@ -24,25 +24,24 @@ class _SignUpScreenState extends State<SignUpScreen> {
         return SignUpProvider();
       },
       child: Consumer<SignUpProvider>(builder: (context, model, child) {
-        return Scaffold(
-          backgroundColor: primaryColor,
+        return GestureDetector(
+          onTap: (){
+            FocusScope.of(context).requestFocus(FocusNode());
+          },
+          child: Scaffold(
+            backgroundColor: primaryColor,
 
-          ///
-          ///   Body ==============>>>
-          ///
-          body: ModalProgressHUD(
-            progressIndicator: CircularProgressIndicator(
-              color: primaryColor,
-            ),
-            inAsyncCall: model.state == ViewState.busy,
-            child:  SingleChildScrollView(
-              child: Form(
-                key: model.formKey,
-                //autovalidateMode: AutovalidateMode.onUserInteraction,
-                child: GestureDetector(
-                  onTap: (){
-                    FocusScope.of(context).requestFocus(FocusNode());
-                  },
+            ///
+            ///   Body ==================>>>
+            ///
+            body: ModalProgressHUD(
+              progressIndicator: CircularProgressIndicator(
+                color: primaryColor,
+              ),
+              inAsyncCall: model.state == ViewState.busy,
+              child:  SingleChildScrollView(
+                child: Form(
+                  key: model.formKey,
                   child: Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
@@ -84,7 +83,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
                                                 .appUser
                                                 .profileImage!)
                                                 : AssetImage(
-                                                'assets/images/babykids18.jpg')
+                                                'assets/images/dp20.jpg')
                                             as ImageProvider,
                                           ),
                                         ),

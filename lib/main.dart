@@ -11,7 +11,7 @@ void main() async {
   await Firebase.initializeApp();
   await setupLocator();
 
-  await Locales.init(['en', 'es']);
+  await Locales.init(['en', 'es'],);
   runApp(MyApp());
 }
 

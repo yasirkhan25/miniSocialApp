@@ -45,8 +45,11 @@ class AuthServices{
         this.appUser.appUserId = credential.user!.uid;
         this.isLogin = true;
         print("SignUpUserId=> ${this.appUser.appUserId}");
+
+        /// Adding User Data to Firestore ========>>>
         await databaseServices.registerUser(appUser);
 
+        /// Getting User Data from Firestore =======>>>
         this.appUser = await databaseServices.getUser(credential.user!.uid);
 
         print (" Hello ========>>> "+appUser.userName.toString());
@@ -85,7 +88,6 @@ class AuthServices{
         ///
         this.appUser = await databaseServices.getUser(credentials.user!.uid);
 
-        //vehicleDetailModel = await databaseServices.getVehicleDetail(credentials.user!.uid);
       }
     }
     catch(e){

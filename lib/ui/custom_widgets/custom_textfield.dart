@@ -9,7 +9,6 @@ class CustomTextField extends StatelessWidget {
   final hintText;
   final controller;
   final preFixIcon;
-  final sufFixIcon;
   bool obscureText;
   final textInputAction;
   final keyBoardType;
@@ -19,7 +18,7 @@ class CustomTextField extends StatelessWidget {
 
   CustomTextField({
     this.preFixIcon,
-    this.sufFixIcon,
+    this.suffixIcon,
     this.onChanged,
     this.controller,
     this.hintText,
@@ -27,7 +26,6 @@ class CustomTextField extends StatelessWidget {
     this.obscureText = false,
     this.textInputAction,
     this.keyBoardType,
-    this.suffixIcon,
     this.focusNode,
     this.onFieldSubmitted,
 
@@ -62,7 +60,7 @@ class CustomTextField extends StatelessWidget {
             color: Colors.black,
           ),
           prefix: preFixIcon,
-          suffixIcon: sufFixIcon,
+          suffixIcon: suffixIcon,
 
           border: OutlineInputBorder(
             borderRadius: BorderRadius.circular(7),

@@ -9,7 +9,7 @@ class DatabaseServices {
 
 
   ///
-  /// Add user
+  /// Add user ============>>>
   ///
   registerUser(AppUser appUser) {
     try {
@@ -23,14 +23,13 @@ class DatabaseServices {
   }
 
   ///
-  /// Get user`
+  /// Get user ============>>>
   ///
   Future<AppUser> getUser(id) async {
     print('GetUser id: $id');
     try {
       final snapshot =
           await firebaseFireStore.collection('AppUser').doc(id).get();
-      // print('Current app User Data: ${snapshot.data()}');
       return AppUser.fromJson(snapshot.data(), snapshot.id);
     } catch (e) {
       print('Exception @DatabaseService/getUser $e');
@@ -39,15 +38,14 @@ class DatabaseServices {
   }
 
   ///
-  /// get all app users
+  /// get all App Users ============>>>
   ///
   Future<List<AppUser>> getAppUsers() async {
     final List<AppUser> appUserList = [];
     try {
       QuerySnapshot snapshot = await FirebaseFirestore.instance
           .collection('AppUser')
-          .where('appUserId',
-              isNotEqualTo: locator<AuthServices>().appUser.appUserId)
+          .where('appUserId', isNotEqualTo: locator<AuthServices>().appUser.appUserId)
           .get();
       if (snapshot.docs.length > 0) {
         snapshot.docs.forEach((element) {
@@ -62,6 +60,7 @@ class DatabaseServices {
     }
     return appUserList;
   }
+
 
   ///
   /// get all app users
